@@ -2,6 +2,30 @@
 
 const axios = require('axios');
 const AIUsageLog = require('../models/AIUsageLog');
+const ApiConfig = require('../models/ApiConfig');
+
+// In-memory key cache (refreshed from DB at startup + every 5 min)
+const _keyCache = {};
+
+const refreshKeyCache = async () => {
+  try {
+    const configs = await ApiConfig.find({ isActive: true }).lean();
+    for (const cfg of configs) {
+      // Re-decrypt each stored key
+      const doc = await ApiConfig.findById(cfg._id);
+      _keyCache[cfg.service] = doc.getKey();
+    }
+  } catch (e) {
+    // DB not ready yet – env vars will be used directly
+  }
+};
+
+// Refresh every 5 minutes in production
+if (process.env.NODE_ENV !== 'test') {
+  setInterval(refreshKeyCache, 5 * 60 * 1000);
+  // Initial load (non-blocking)
+  setImmediate(refreshKeyCache);
+}
 
 // Provider configurations
 const PROVIDERS = {
@@ -52,7 +76,8 @@ const PROVIDERS = {
 const getApiKey = (provider) => {
   const cfg = PROVIDERS[provider];
   if (!cfg) return null;
-  return process.env[cfg.apiKeyEnv] || null;
+  // DB cache takes priority; fall back to env
+  return _keyCache[provider] || process.env[cfg.apiKeyEnv] || null;
 };
 
 const getActiveProvider = () => {
@@ -90,7 +115,7 @@ const generateTextOpenAI = async (provider, prompt, systemPrompt, options = {}) 
         'Content-Type': 'application/json',
         ...(provider === 'openrouter' && {
           'HTTP-Referer': process.env.FRONTEND_URL || 'http://localhost:3000',
-          'X-Title': 'KisanSaathi',
+          'X-Title': 'Vive Code',
         }),
       },
       timeout: 30000,
@@ -219,7 +244,7 @@ const analyzeImageOpenAI = async (provider, imageBase64OrUrl, prompt, options = 
         'Content-Type': 'application/json',
         ...(provider === 'openrouter' && {
           'HTTP-Referer': process.env.FRONTEND_URL || 'http://localhost:3000',
-          'X-Title': 'KisanSaathi',
+          'X-Title': 'Vive Code',
         }),
       },
       timeout: 45000,

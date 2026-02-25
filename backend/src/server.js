@@ -13,6 +13,7 @@ const passport = require('passport');
 
 const connectDB = require('./config/db');
 require('./config/passport');
+const seedApiKeys = require('./config/seedApiKeys');
 
 const { generalLimiter } = require('./middleware/rateLimiter');
 
@@ -26,8 +27,8 @@ const eosRoutes = require('./routes/eosRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB then seed encrypted API keys
+connectDB().then(() => seedApiKeys());
 
 // Security headers
 app.use(helmet({
@@ -77,7 +78,7 @@ app.use(passport.initialize());
 
 // Health check (unauthenticated)
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'kisansaathi-backend' });
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'vivecode-backend' });
 });
 
 // API routes
@@ -111,7 +112,7 @@ app.use((err, _req, res, _next) => {
 });
 
 const server = app.listen(PORT, () => {
-  console.log(`[Server] KisanSaathi backend running on port ${PORT} (${process.env.NODE_ENV || 'development'})`);
+  console.log(`[Server] Vive Code backend running on port ${PORT} (${process.env.NODE_ENV || 'development'})`);
 });
 
 // Graceful shutdown

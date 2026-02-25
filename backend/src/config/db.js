@@ -6,7 +6,7 @@ const MAX_RETRIES = 5;
 const RETRY_DELAY_MS = 3000;
 
 const connectDB = async (retries = MAX_RETRIES) => {
-  const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/kisansaathi';
+  const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/vivecode';
 
   try {
     const conn = await mongoose.connect(uri, {

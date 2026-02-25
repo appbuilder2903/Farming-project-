@@ -1,7 +1,7 @@
 {
-  "name": "kisansaathi-backend",
+  "name": "vivecode-backend",
   "version": "1.0.0",
-  "description": "KisanSaathi Bharat - Agri Intelligence Platform Backend",
+  "description": "Vive Code - Agri Intelligence Platform Backend",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

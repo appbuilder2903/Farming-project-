@@ -27,7 +27,7 @@ export default function DashboardLayout({
       <div className="min-h-screen bg-primary-50 flex items-center justify-center">
         <div className="text-center">
           <div className="text-5xl mb-4 animate-bounce">🌾</div>
-          <p className="text-primary-600 font-medium">Loading KisanSaathi...</p>
+          <p className="text-primary-600 font-medium">Loading Vive Code...</p>
         </div>
       </div>
     );

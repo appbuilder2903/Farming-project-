@@ -134,7 +134,7 @@ const chatbot = async (req, res) => {
 
   const langName = LANGUAGE_NAMES[userLanguage] || 'English';
 
-  const systemPrompt = `You are KisanSaathi, an expert agricultural assistant for Indian farmers. 
+  const systemPrompt = `You are Vive Code, an expert agricultural assistant for Indian farmers. 
 You help farmers with crop advice, pest management, weather impacts, government schemes, market prices, and best farming practices.
 Always respond in ${langName}. Be concise, practical, and use simple language that farmers can understand.
 Provide actionable advice specific to Indian agricultural conditions.`;
@@ -142,7 +142,7 @@ Provide actionable advice specific to Indian agricultural conditions.`;
   try {
     const contextMessages = conversationHistory
       .slice(-6)
-      .map((m) => `${m.role === 'user' ? 'Farmer' : 'KisanSaathi'}: ${m.content}`)
+      .map((m) => `${m.role === 'user' ? 'Farmer' : 'Vive Code'}: ${m.content}`)
       .join('\n');
 
     const fullPrompt = contextMessages

@@ -1,16 +1,22 @@
 'use strict';
 
 const axios = require('axios');
+const ApiConfig = require('../models/ApiConfig');
 
 const EOS_API_URL = process.env.EOS_API_URL || 'https://gate.eos.com/api/gdw';
-const EOS_API_KEY = process.env.EOS_API_KEY;
 
-const eosClient = axios.create({
+// Resolve EOS key: DB cache first, then env
+const getEosKey = async () => {
+  const dbKey = await ApiConfig.getKey('eos').catch(() => null);
+  return dbKey || process.env.EOS_API_KEY || null;
+};
+
+const makeEosClient = (apiKey) => axios.create({
   baseURL: EOS_API_URL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
-    ...(EOS_API_KEY && { Authorization: `Bearer ${EOS_API_KEY}` }),
+    ...(apiKey && { Authorization: `Bearer ${apiKey}` }),
   },
 });
 
@@ -18,9 +24,11 @@ const eosClient = axios.create({
  * Fetch NDVI and field health data for given coordinates.
  */
 const getFieldHealth = async (lat, lng, fieldId = null) => {
+  const EOS_API_KEY = await getEosKey();
   if (!EOS_API_KEY) {
     return generateMockFieldHealth(lat, lng);
   }
+  const eosClient = makeEosClient(EOS_API_KEY);
 
   try {
     const today = new Date();

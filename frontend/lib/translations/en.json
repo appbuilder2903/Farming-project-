@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "KisanSaathi Bharat",
+    "name": "Vive Code",
     "tagline": "Agri Intelligence Platform",
     "tagline2": "Smart Farming for Every Indian Farmer"
   },
@@ -21,7 +21,7 @@
     "google": "Google",
     "github": "GitHub",
     "microsoft": "Microsoft",
-    "loginTitle": "Welcome to KisanSaathi",
+    "loginTitle": "Welcome to Vive Code",
     "loginSubtitle": "Sign in to access AI-powered farming intelligence",
     "orContinueWith": "Or continue with",
     "secureLogin": "Secure OAuth login – no password needed"

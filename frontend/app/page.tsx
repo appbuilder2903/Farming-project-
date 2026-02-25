@@ -47,7 +47,7 @@ export default function HomePage() {
     const error = searchParams.get('error');
     if (token) {
       document.cookie = `token=${token}; path=/; max-age=604800; samesite=lax`;
-      toast.success('Login successful! Welcome to KisanSaathi.');
+      toast.success('Login successful! Welcome to Vive Code.');
       router.push('/dashboard');
     }
     if (error) {
@@ -102,7 +102,7 @@ export default function HomePage() {
               🌾
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
-              {t('app.name', 'KisanSaathi Bharat')}
+              {t('app.name', 'Vive Code')}
             </h1>
             <div className="flex items-center justify-center gap-2 mb-2">
               <span className="h-px w-12 bg-accent-400/60" />
@@ -141,7 +141,7 @@ export default function HomePage() {
             className="max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl mb-16"
           >
             <h2 className="text-2xl font-bold text-white mb-1">
-              {t('auth.loginTitle', 'Welcome to KisanSaathi')}
+              {t('auth.loginTitle', 'Welcome to Vive Code')}
             </h2>
             <p className="text-primary-200 text-sm mb-7">
               {t('auth.loginSubtitle', 'Sign in to access AI-powered farming intelligence')}
@@ -236,7 +236,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-4">
             <span className="text-2xl">🌾</span>
-            <span className="text-white font-bold">KisanSaathi Bharat</span>
+            <span className="text-white font-bold">Vive Code</span>
           </div>
           <p className="text-primary-400 text-sm mb-4">
             Empowering Indian farmers with AI-powered agricultural intelligence
@@ -253,7 +253,7 @@ export default function HomePage() {
             </span>
           </div>
           <p className="text-primary-600 text-xs mt-4">
-            © {new Date().getFullYear()} KisanSaathi Bharat. Built with ❤️ for Indian Farmers.
+            © {new Date().getFullYear()} Vive Code. Built with ❤️ for Indian Farmers.
           </p>
         </div>
       </footer>

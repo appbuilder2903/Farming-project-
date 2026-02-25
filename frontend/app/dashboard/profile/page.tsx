@@ -143,7 +143,7 @@ export default function ProfilePage() {
       <div className="agri-card">
         <h2 className="font-semibold text-primary-900 mb-1">{t('profile.language')}</h2>
         <p className="text-primary-400 text-xs mb-4">
-          KisanSaathi supports 121 Indian languages. Choose your preferred language for AI outputs.
+          Vive Code supports 121 Indian languages. Choose your preferred language for AI outputs.
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 max-h-64 overflow-y-auto pr-1">

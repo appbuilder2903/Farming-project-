@@ -45,7 +45,7 @@ export default function Sidebar({ collapsed = false, onClose }: SidebarProps) {
               🌾
             </div>
             <div>
-              <div className="text-white font-bold text-sm leading-tight">KisanSaathi</div>
+              <div className="text-white font-bold text-sm leading-tight">Vive Code</div>
               <div className="text-primary-400 text-xs">Bharat</div>
             </div>
           </div>

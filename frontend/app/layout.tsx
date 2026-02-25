@@ -5,19 +5,19 @@ import { AuthProvider } from '@/context/AuthContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 
 export const metadata: Metadata = {
-  title: 'KisanSaathi Bharat – Agri Intelligence Platform',
+  title: 'Vive Code – Agri Intelligence Platform',
   description:
     'AI-powered agricultural intelligence for Indian farmers: crop disease detection, live mandi prices, satellite field monitoring, and more.',
   keywords:
-    'farmer, agriculture, mandi prices, crop disease, KisanSaathi, India, AI farming',
-  authors: [{ name: 'KisanSaathi Bharat' }],
+    'farmer, agriculture, mandi prices, crop disease, Vive Code, India, AI farming',
+  authors: [{ name: 'Vive Code' }],
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico',
     apple: '/icons/icon-192x192.png',
   },
   openGraph: {
-    title: 'KisanSaathi Bharat',
+    title: 'Vive Code',
     description: 'AI-powered Agri Intelligence Platform for Indian Farmers',
     type: 'website',
   },
