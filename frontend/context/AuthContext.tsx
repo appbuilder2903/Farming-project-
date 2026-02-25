@@ -5,7 +5,6 @@ import { authAPI } from '@/lib/api';
 import {
   clearAuth,
   getCurrentUser,
-  getToken,
   setCurrentUser,
   setToken,
 } from '@/lib/auth';
@@ -37,11 +36,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refreshUser = useCallback(async () => {
     try {
-      const token = getToken();
-      if (!token) {
-        setUser(null);
-        return;
-      }
       const res = await authAPI.getMe();
       const fetchedUser = res.data?.data as User;
       setUser(fetchedUser);
@@ -54,7 +48,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const stored = getCurrentUser();
-    if (stored && getToken()) {
+    if (stored) {
       setUser(stored);
     }
     refreshUser().finally(() => setLoading(false));

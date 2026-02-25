@@ -2,6 +2,18 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 
 const ALGORITHM = 'aes-256-gcm';
+
+if (process.env.NODE_ENV === 'production' && !process.env.API_ENCRYPTION_KEY) {
+  throw new Error(
+    '[ApiConfig] API_ENCRYPTION_KEY environment variable is required in production. ' +
+    'Set a random 32-character string in your environment.'
+  );
+}
+
+if (process.env.NODE_ENV !== 'production' && !process.env.API_ENCRYPTION_KEY) {
+  console.warn('[ApiConfig] API_ENCRYPTION_KEY is not set. Using insecure default – set this in .env for development.');
+}
+
 const KEY = Buffer.from(
   (process.env.API_ENCRYPTION_KEY || 'vivecode_enc_key_32chars_secure!').slice(0, 32)
 );
